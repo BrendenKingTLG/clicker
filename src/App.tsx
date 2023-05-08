@@ -1,9 +1,7 @@
-import { createElement, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import coin from "./assets/coin.png";
+import coin from "./assets/c1.png";
 import bread from "./assets/bread.png";
-import shop from "./assets/shop.png";
-import reset from "./assets/reset.png";
 
 import $ from "jquery";
 
