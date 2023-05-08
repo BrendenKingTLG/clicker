@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import coin from "./assets/c1.png";
+import coin from "./assets/1.png";
 import bread from "./assets/bread.png";
 
 import $ from "jquery";
