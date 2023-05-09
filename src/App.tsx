@@ -61,7 +61,7 @@ function App() {
         <div className="row">
           <div
             className="col d-flex justify-content-center"
-            style={{ paddingTop: "5em" }}
+            style={{ paddingTop: "4em" }}
           >
             <div className="coin">
               <a>
@@ -81,7 +81,7 @@ function App() {
         </div>
         <div
           className="row d-flex justify-content-center"
-          style={{ paddingTop: "6em" }}
+          style={{ paddingTop: "2em" }}
         >
           <div
             className="col d-flex justify-content-between"
