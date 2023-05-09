@@ -45,6 +45,24 @@ function App() {
     }
   }
 
+  function buyitem(itemName: string, cost: number) {
+    if (count >= cost) {
+      console.log("yo");
+    } else {
+      let shop = document.getElementById("overlay");
+      let breadElement = document.createElement("p");
+      breadElement.className = "alert alert-danger text-center";
+      breadElement.style.width = "20em";
+      breadElement.style.height = "3em";
+      breadElement.style.position = "absolute";
+      breadElement.textContent = "Not Enough Coins";
+      breadElement.style.display = `inline`;
+      shop?.appendChild(breadElement);
+      // breadElement.style.transform = "translateY(3in)";
+      setTimeout(() => shop?.removeChild(breadElement), 700);
+    }
+  }
+
   return (
     <>
       <div className="container-fluid d-flex justify-content-center flex-column">
@@ -121,35 +139,23 @@ function App() {
             className="list-group"
             style={{ width: "100%", height: "30em", overflow: "scroll" }}
           >
-            <li className="list-group-item" style={{ padding: "2em" }}>
-              Cras justo odio
+            <li
+              className="list-group-item d-flex justify-content-between"
+              style={{ padding: "2em" }}
+              onClick={() => buyitem("clickPower", 200)}
+              id="clickPower"
+            >
+              <p>Click Power</p>
+              <p>200</p>
             </li>
-            <li className="list-group-item" style={{ padding: "2em" }}>
-              Dapibus ac facilisis in
-            </li>
-            <li className="list-group-item" style={{ padding: "2em" }}>
-              Morbi leo risus
-            </li>
-            <li className="list-group-item" style={{ padding: "2em" }}>
-              Porta ac consectetur ac
-            </li>
-            <li className="list-group-item" style={{ padding: "2em" }}>
-              Vestibulum at eros
-            </li>
-            <li className="list-group-item" style={{ padding: "2em" }}>
-              Cras justo odio
-            </li>
-            <li className="list-group-item" style={{ padding: "2em" }}>
-              Dapibus ac facilisis in
-            </li>
-            <li className="list-group-item" style={{ padding: "2em" }}>
-              Morbi leo risus
-            </li>
-            <li className="list-group-item" style={{ padding: "2em" }}>
-              Porta ac consectetur ac
-            </li>
-            <li className="list-group-item" style={{ padding: "2em" }}>
-              Vestibulum at eros
+            <li
+              className="list-group-item d-flex justify-content-between"
+              style={{ padding: "2em" }}
+              onClick={() => buyitem("xcoin", 400)}
+              id="xcoin"
+            >
+              <p>X-Coin</p>
+              <p>400</p>
             </li>
           </ul>
           <button
