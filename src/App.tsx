@@ -48,7 +48,7 @@ function App() {
   return (
     <>
       <div className="container-fluid d-flex justify-content-center flex-column">
-        <div className="row" style={{ paddingTop: "5em" }}>
+        <div className="row" style={{ paddingTop: "3em" }}>
           <div className="col d-flex justify-content-center">
             <button
               type="button"
