@@ -6,10 +6,29 @@ import bread from "./assets/bread.png";
 import $ from "jquery";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(199);
+  const [clickStrength, setClickStrength] = useState(1);
+
+  const shopMap = new Map<string, Map<string, string>>([
+    [
+      "clickPower",
+      new Map([
+        ["message", "you doubled your click power"],
+        ["effect", "2"],
+      ]),
+    ],
+    [
+      "xcoin",
+      new Map([
+        ["message", "you are using xcoin"],
+        ["effect", "2"],
+      ]),
+    ],
+  ]);
 
   function coinActions(e: any) {
-    setCount(count + 1);
+    setCount(count + clickStrength);
+    console.log(count);
     let x = e.clientX;
     let y = e.clientY;
     let coin = document.querySelector(".coin");
@@ -24,7 +43,6 @@ function App() {
     breadElement.style.display = `inline`;
     coin?.appendChild(breadElement);
     $("#bread").animate({ top: "-=55px" });
-    // breadElement.style.transform = "translateY(3in)";
     setTimeout(() => coin?.removeChild(breadElement), 700);
   }
 
@@ -46,19 +64,36 @@ function App() {
   }
 
   function buyitem(itemName: string, cost: number) {
+    let message = "";
+    let effect = 0;
     if (count >= cost) {
-      console.log("yo");
-    } else {
+      if (shopMap.has(itemName)) {
+        message = shopMap.get(itemName)!.get("message") as string;
+        effect = parseInt(shopMap.get(itemName)!.get("effect") as string);
+      }
       let shop = document.getElementById("overlay");
       let breadElement = document.createElement("p");
       breadElement.className = "alert alert-danger text-center";
       breadElement.style.width = "20em";
       breadElement.style.height = "3em";
       breadElement.style.position = "absolute";
+      breadElement.textContent = message;
+      breadElement.style.display = `inline`;
+      shop?.appendChild(breadElement);
+      setCount(count - cost);
+      setClickStrength(clickStrength + effect);
+      console.log(shopMap.get(itemName)?.get("effect") as string);
+      setTimeout(() => shop?.removeChild(breadElement), 1000);
+    } else {
+      let shop = document.getElementById("overlay");
+      let breadElement = document.createElement("p");
+      breadElement.className = "alert alert-danger text-center";
+      breadElement.style.width = "20em";
+      breadElement.style.height = "2em";
+      breadElement.style.position = "absolute";
       breadElement.textContent = "Not Enough Coins";
       breadElement.style.display = `inline`;
       shop?.appendChild(breadElement);
-      // breadElement.style.transform = "translateY(3in)";
       setTimeout(() => shop?.removeChild(breadElement), 700);
     }
   }
@@ -83,16 +118,20 @@ function App() {
           >
             <div className="coin">
               <a>
-                <img
-                  src={coin}
-                  alt=""
+                <button
+                  id="coin"
+                  className="btn"
                   onClick={(e) => coinActions(e)}
                   style={{
                     width: "20em",
                     height: "20em",
-                    borderRadius: "35%",
+                    borderRadius: "50%",
+                    boxShadow: "0 5px #666",
+                    backgroundColor: "#04AA6D",
                   }}
-                />
+                >
+                  A-COIN
+                </button>
               </a>
             </div>
           </div>

@@ -7,6 +7,10 @@
 html, body, .container-fluid {
   background: orange;
 }
+#coin:active {
+  background-color: #3e8e41;
+  transform: translateY(4px);
+}
 
 #overlay {
   position: fixed; /* Sit on top of the page content */
